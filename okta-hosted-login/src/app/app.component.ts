@@ -36,6 +36,7 @@ export class AppComponent {
 
     console.log('is authenticated: ' + this.isAuthenticated);
 
+
     }
 
   

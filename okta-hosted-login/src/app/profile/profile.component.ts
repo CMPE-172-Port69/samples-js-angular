@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  checkQueryString(input: string){
+  checkQueryString(input: string) {
       if( input !== '' ){
           this.stringIsEmpty = false;
       }
