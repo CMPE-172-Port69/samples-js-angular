@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PayrollService } from '../payroll.service';
+import { AccessService } from "../access.service";
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  providers: [PayrollService]
+  providers: [PayrollService, AccessService]
 })
 export class SearchComponent implements OnInit {
 
@@ -18,7 +19,7 @@ export class SearchComponent implements OnInit {
 
   //TODO add array for user results
 
-  constructor(private payroll: PayrollService) { }
+  constructor(private payroll: PayrollService, private auth: AccessService) { }
 
   ngOnInit() {
   }
@@ -64,7 +65,12 @@ export class SearchComponent implements OnInit {
 
   onNameSearch(input: string) {
     this.payroll.search(input).subscribe(response => {
-      this.employees = response;
+      if(this.auth.isAuthorized("Administrator")){
+        this.employees = response;
+      }
+      else{
+        window.alert("You do not have permission to access this data.");
+      }
     })
   }
 
