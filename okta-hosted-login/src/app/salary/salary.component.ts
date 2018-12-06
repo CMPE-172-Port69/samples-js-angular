@@ -49,12 +49,7 @@ export class SalaryComponent implements OnInit {
   onIDSearch() {
     this.payroll.salaryHistory(this.inputID).subscribe(response => {
       try {
-        if(this.auth.isAuthorized("Administrator")){
-          this.salaries = response;
-        }
-        else{
-          window.alert("You do not have permission to access this data.");
-        }
+        this.salaries = response;
         this.inputID = "";
         this.stringInvalid = true;
       } catch (err) {
@@ -86,13 +81,8 @@ export class SalaryComponent implements OnInit {
 
   onModifyEndDateAndAddSalary() {
     try {
-      if(this.auth.isAuthorized("Administrator")){;
         this.onModifyEndDate();
         this.addSalary();
-      }
-      else {
-        window.alert("You do not have permission to access this data.");
-      }
     }
     catch (err) {
         console.log("Error modifying salary");

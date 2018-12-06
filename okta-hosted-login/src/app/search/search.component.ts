@@ -65,12 +65,7 @@ export class SearchComponent implements OnInit {
 
   onNameSearch(input: string) {
     this.payroll.search(input).subscribe(response => {
-      if(this.auth.isAuthorized("Administrator")){
-        this.employees = response;
-      }
-      else{
-        window.alert("You do not have permission to access this data.");
-      }
+      this.employees = response;
     })
   }
 
