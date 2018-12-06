@@ -25,7 +25,7 @@ npm install; '''
         sh '''echo "Deploying...";
         cd docker; 
         sudo docker-compose build; 
-        sudo nohup docker-compose up &'''
+        sudo docker-compose up'''
       }
     }
   }
