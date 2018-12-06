@@ -23,7 +23,7 @@ export class AppComponent {
   title = 'app';
   isAuthenticated: boolean;
 
-  userGroups: any;
+  user: any;
 
 
   constructor(public oktaAuth: OktaAuthService, private router: Router) {
@@ -36,12 +36,9 @@ export class AppComponent {
 
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
 
-    const userClaims = await this.oktaAuth.getUser();
-
-    this.userGroups = userClaims.groups;
-
     console.log('is authenticated: ' + this.isAuthenticated);
 
+    this.user = await this.oktaAuth.getUser();
   }
 
   
@@ -56,7 +53,7 @@ export class AppComponent {
     var isAuthorized = false;
 
     try {
-        this.userGroups.forEach(element => {
+        this.user.groups.forEach(element => {
             if (element === group) {
                 console.log(element, group);
                 isAuthorized = true;
