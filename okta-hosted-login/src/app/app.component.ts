@@ -39,6 +39,8 @@ export class AppComponent {
 
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
 
+    this.user = await this.oktaAuth.getUser();
+
     console.log('is authenticated: ' + this.isAuthenticated);
   }
 
