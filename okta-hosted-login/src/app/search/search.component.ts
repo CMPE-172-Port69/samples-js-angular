@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PayrollService } from '../payroll.service';
+import { AccessService } from "../access.service";
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  providers: [PayrollService]
+  providers: [PayrollService, AccessService]
 })
 export class SearchComponent implements OnInit {
 
@@ -18,7 +19,7 @@ export class SearchComponent implements OnInit {
 
   //TODO add array for user results
 
-  constructor(private payroll: PayrollService) { }
+  constructor(private payroll: PayrollService, private auth: AccessService) { }
 
   ngOnInit() {
   }

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PayrollService } from "../payroll.service";
+import {AccessService } from "../access.service";
 
 @Component({
   selector: 'app-salary',
   templateUrl: './salary.component.html',
   styleUrls: ['./salary.component.css'],
-  providers: [PayrollService]
+  providers: [PayrollService, AccessService]
 })
 export class SalaryComponent implements OnInit {
 
@@ -20,7 +21,9 @@ export class SalaryComponent implements OnInit {
   dateNow: any;
   dateEnd: any;
 
-  constructor(private payroll: PayrollService) {}
+
+
+  constructor(private payroll: PayrollService, private auth: AccessService) {}
 
   ngOnInit() {}
 
@@ -54,6 +57,7 @@ export class SalaryComponent implements OnInit {
       }
     });
     this.stringInvalid = true;
+    
   }
 
   checkNewSalaryString(input: string) {
@@ -76,8 +80,13 @@ export class SalaryComponent implements OnInit {
   }
 
   onModifyEndDateAndAddSalary() {
-    this.onModifyEndDate();
-    this.addSalary();
+    try {
+        this.onModifyEndDate();
+        this.addSalary();
+    }
+    catch (err) {
+        console.log("Error modifying salary");
+    }
   }
   addSalary() {
     var today = new Date();
@@ -111,6 +120,7 @@ export class SalaryComponent implements OnInit {
             from_date: this.dateNow,
             to_date: this.dateEnd
           });
+
           this.newSalary = "";
           this.newSalaryInvalid = true;
         } catch (err) {
