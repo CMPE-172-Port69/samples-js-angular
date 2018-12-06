@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PayrollService } from "../payroll.service";
-import {AccessService } from "../access.service";
 
 @Component({
   selector: 'app-salary',
   templateUrl: './salary.component.html',
   styleUrls: ['./salary.component.css'],
-  providers: [PayrollService, AccessService]
+  providers: [PayrollService]
 })
 export class SalaryComponent implements OnInit {
 
@@ -23,7 +22,7 @@ export class SalaryComponent implements OnInit {
 
 
 
-  constructor(private payroll: PayrollService, private auth: AccessService) {}
+  constructor(private payroll: PayrollService) {}
 
   ngOnInit() {}
 

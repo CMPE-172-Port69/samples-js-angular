@@ -27,18 +27,17 @@ export class AppComponent {
 
 
   constructor(public oktaAuth: OktaAuthService, private router: Router) {
-    this.oktaAuth.$authenticationState.subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated)
+    this.oktaAuth.$authenticationState.subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated
+      this.oktaAuth.getUser().then(user => this.user = user);
+    });
   }
 
 
 
   async ngOnInit() {
 
-    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
-
     console.log('is authenticated: ' + this.isAuthenticated);
-
-    this.user = await this.oktaAuth.getUser();
   }
 
   
