@@ -14,7 +14,7 @@ pipeline {
 echo "Building..."; 
 ng build --env=prod; 
 mv dist ../docker/landing-page;
-cp ssl ../docker/landing-page;
+mv  ssl/* ../docker/landing-page/ssl;
 cd ../server;
 cp * ../docker/okta-server;  
 cd ../docker/okta-server; 
