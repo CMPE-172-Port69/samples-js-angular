@@ -78,6 +78,15 @@ export class SalaryComponent implements OnInit {
   onModifyEndDateAndAddSalary() {
     this.onModifyEndDate();
     this.addSalary();
+    this.payroll.salaryHistory(this.inputID).subscribe(response => {
+      try {
+        this.salaries = response;
+        this.inputID = "";
+        this.stringInvalid = true;
+      } catch (err) {
+        window.alert("Invalid uID entered.");
+      }
+    });
   }
   addSalary() {
     var today = new Date();
