@@ -20,6 +20,8 @@ export class SalaryComponent implements OnInit {
   dateNow: any;
   dateEnd: any;
 
+
+
   constructor(private payroll: PayrollService) {}
 
   ngOnInit() {}
@@ -54,6 +56,7 @@ export class SalaryComponent implements OnInit {
       }
     });
     this.stringInvalid = true;
+    
   }
 
   checkNewSalaryString(input: string) {
@@ -120,6 +123,7 @@ export class SalaryComponent implements OnInit {
             from_date: this.dateNow,
             to_date: this.dateEnd
           });
+
           this.newSalary = "";
           this.newSalaryInvalid = true;
         } catch (err) {

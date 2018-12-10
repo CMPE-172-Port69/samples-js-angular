@@ -13,8 +13,7 @@
     type="text"
     class="form-control"
     [(ngModel)]="inputID"
-    (input)="checkIDString(inputID)"
-  />
+    (input)="checkIDString(inputID)"/>
 
   <button class="btn" class="small ui orange button" role="button" [disabled]="stringInvalid" (click)="onIDSearch()">
     Get Employee Salary History
